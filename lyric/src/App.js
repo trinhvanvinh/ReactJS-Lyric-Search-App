@@ -1,14 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/layouts/Navbar';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Index from './components/layouts/Index';
+import {Provider} from './context';
+import Lyrics from './components/layouts/Lyrics';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       
-      </header>
-    </div>
+    <Provider>
+    <Router>
+      <React.Fragment>
+      <Navbar/>
+      <div className="container" >
+        <Switch>
+          <Route exact path="/" component={Index} />
+          <Route exact path="/lyrics/track/:id" component={Lyrics} />
+        </Switch>
+      </div>
+    </React.Fragment>
+    </Router>
+    </Provider>
   );
 }
 
